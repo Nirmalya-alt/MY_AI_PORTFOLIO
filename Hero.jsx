@@ -93,28 +93,39 @@ function Hero({ onOpenResume }) {
       startX.current = touch.clientX;
 
       // Accumulate drag rotation
-      heroMouseState.current.dragRotation += (dx / rect.width) * Math.PI * 2.5;
+      heroMouseState.current.dragRotation += (dx / rect.width) * Math.PI * 2.2;
 
       // For touch, we also update normalized x,y position (center is 0)
       const touchX = ((touch.clientX - rect.left) / rect.width - 0.5) * 2;
       const touchY = -((touch.clientY - rect.top) / rect.height - 0.5) * 2;
 
-      heroMouseState.current.x = Math.max(-1, Math.min(1, touchX));
-      heroMouseState.current.y = Math.max(-1, Math.min(1, touchY));
+      heroMouseState.current.x = Math.max(-0.85, Math.min(0.85, touchX));
+      heroMouseState.current.y = Math.max(-0.85, Math.min(0.85, touchY));
+    };
+
+    const handleGlobalTouchEnd = () => {
+      if (isDragging.current) {
+        isDragging.current = false;
+        if (avatarSideRef.current) {
+          avatarSideRef.current.classList.remove("grabbing");
+        }
+        heroMouseState.current.x = 0;
+        heroMouseState.current.y = 0;
+      }
     };
 
     window.addEventListener("mousemove", handleGlobalMouseMove);
     window.addEventListener("mouseup", handleGlobalMouseUp);
     window.addEventListener("touchmove", handleGlobalTouchMove, { passive: true });
-    window.addEventListener("touchend", handleGlobalMouseUp);
-    window.addEventListener("touchcancel", handleGlobalMouseUp);
+    window.addEventListener("touchend", handleGlobalTouchEnd);
+    window.addEventListener("touchcancel", handleGlobalTouchEnd);
 
     return () => {
       window.removeEventListener("mousemove", handleGlobalMouseMove);
       window.removeEventListener("mouseup", handleGlobalMouseUp);
       window.removeEventListener("touchmove", handleGlobalTouchMove);
-      window.removeEventListener("touchend", handleGlobalMouseUp);
-      window.removeEventListener("touchcancel", handleGlobalMouseUp);
+      window.removeEventListener("touchend", handleGlobalTouchEnd);
+      window.removeEventListener("touchcancel", handleGlobalTouchEnd);
     };
   }, []);
 
@@ -145,11 +156,17 @@ function Hero({ onOpenResume }) {
   };
 
   const handleTouchStart = (e) => {
-    if (e.touches.length > 0) {
+    if (e.touches && e.touches.length > 0) {
       isDragging.current = true;
       startX.current = e.touches[0].clientX;
       if (avatarSideRef.current) {
         avatarSideRef.current.classList.add("grabbing");
+        const rect = avatarSideRef.current.getBoundingClientRect();
+        const touch = e.touches[0];
+        const touchX = ((touch.clientX - rect.left) / rect.width - 0.5) * 2;
+        const touchY = -((touch.clientY - rect.top) / rect.height - 0.5) * 2;
+        heroMouseState.current.x = Math.max(-0.85, Math.min(0.85, touchX));
+        heroMouseState.current.y = Math.max(-0.85, Math.min(0.85, touchY));
       }
     }
   };

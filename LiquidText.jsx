@@ -155,14 +155,63 @@ export default function LiquidText({ children, intensity = "medium", className =
       isHovered = false;
     };
 
+    /* ── Touch interaction for phones & tablets ───────────────────── */
+    const handleTouchStart = (e) => {
+      if (!e.touches || e.touches.length === 0) return;
+      isHovered = true;
+      const touch = e.touches[0];
+      mouseX = touch.clientX;
+      mouseY = touch.clientY;
+      lastMouseX = touch.clientX;
+      lastMouseY = touch.clientY;
+      energy = 2.4; // Instant water ripple on phone screen tap/touch
+
+      if (!rafId) {
+        rafId = requestAnimationFrame(update);
+      }
+    };
+
+    const handleTouchMove = (e) => {
+      if (!e.touches || e.touches.length === 0) return;
+      isHovered = true;
+      const touch = e.touches[0];
+      mouseX = touch.clientX;
+      mouseY = touch.clientY;
+
+      const dx = mouseX - lastMouseX;
+      const dy = mouseY - lastMouseY;
+      const vel = Math.sqrt(dx * dx + dy * dy);
+
+      energy = Math.min(6, energy + vel * 0.14 + 0.2);
+
+      lastMouseX = mouseX;
+      lastMouseY = mouseY;
+
+      if (!rafId) {
+        rafId = requestAnimationFrame(update);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      isHovered = false;
+    };
+
     container.addEventListener("mouseenter", handleMouseEnter);
     container.addEventListener("mousemove", handleMouseMove);
     container.addEventListener("mouseleave", handleMouseLeave);
+    container.addEventListener("touchstart", handleTouchStart, { passive: true });
+    container.addEventListener("touchmove", handleTouchMove, { passive: true });
+    container.addEventListener("touchend", handleTouchEnd, { passive: true });
+    container.addEventListener("touchcancel", handleTouchEnd, { passive: true });
 
     return () => {
       container.removeEventListener("mouseenter", handleMouseEnter);
       container.removeEventListener("mousemove", handleMouseMove);
       container.removeEventListener("mouseleave", handleMouseLeave);
+      container.removeEventListener("touchstart", handleTouchStart);
+      container.removeEventListener("touchmove", handleTouchMove);
+      container.removeEventListener("touchend", handleTouchEnd);
+      container.removeEventListener("touchcancel", handleTouchEnd);
       if (rafId) cancelAnimationFrame(rafId);
     };
   }, [maxDist, radius, freq, text]);

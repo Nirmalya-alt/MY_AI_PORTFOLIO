@@ -113,11 +113,14 @@ function Avatar3D({ mouseStateRef }) {
       if (!model) return;
 
       const isMobile = window.innerWidth <= 768;
+      const isSmallMobile = window.innerWidth <= 480;
       const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
 
-      const mult  = isMobile ? 0.85 : isTablet ? 0.98 : 1.12;
-      const camZ  = isMobile ? 4.0  : isTablet ? 4.3  : 4.5;
-      const camY  = isMobile ? 0.1  : 0.2;
+      // On portrait mobile screens, horizontal FOV is narrower than desktop.
+      // Scaling and camera distance ensure the avatar is beautifully centered without clipping.
+      const mult = isSmallMobile ? 0.65 : isMobile ? 0.74 : isTablet ? 0.96 : 1.12;
+      const camZ = isSmallMobile ? 4.9 : isMobile ? 4.7 : isTablet ? 4.4 : 4.5;
+      const camY = isSmallMobile ? 0.05 : isMobile ? 0.1 : 0.2;
 
       const scale = (1.9 / rawHeight) * mult;
       model.scale.setScalar(scale);
@@ -134,6 +137,7 @@ function Avatar3D({ mouseStateRef }) {
       base.scale = scale;
 
       camera.position.set(0, camY, camZ);
+      camera.updateProjectionMatrix();
     };
 
     /* ── GLB loader ──────────────────────────────────────────────────── */
@@ -219,15 +223,19 @@ function Avatar3D({ mouseStateRef }) {
       smooth.dragRotation = lerp(smooth.dragRotation, dragRotation, 0.08);
 
       if (model) {
-        /* ── Position shift (avatar physically follows cursor) ──── */
-        // Max offsets: ±0.28 horizontal, ±0.18 vertical (scene units)
-        const offsetX = smooth.x * 0.28;
-        const offsetY = smooth.y * 0.18;
+        const isMobileScreen = window.innerWidth <= 768;
+
+        /* ── Position shift (avatar physically follows cursor/touch) ──── */
+        // On mobile, keep displacement tighter so the avatar stays strictly in-bounds
+        const maxOffsetX = isMobileScreen ? 0.08 : 0.28;
+        const maxOffsetY = isMobileScreen ? 0.06 : 0.18;
+        const offsetX = smooth.x * maxOffsetX;
+        const offsetY = smooth.y * maxOffsetY;
 
         /* ── Zoom: distance from centre → slight scale boost ────── */
-        // dist ∈ [0,1.41]; capped at 1.0 for stability
+        const maxZoomRatio = isMobileScreen ? 0.02 : 0.08;
         const dist      = Math.min(Math.sqrt(smooth.x ** 2 + smooth.y ** 2), 1.0);
-        const zoomScale = base.scale * (1 + dist * 0.08); // max +8 %
+        const zoomScale = base.scale * (1 + dist * maxZoomRatio);
 
         /* ── Breathing / idle float (absolute, not accumulative) ─── */
         const breathY = Math.sin(elapsed * 1.4) * 0.003;
@@ -238,10 +246,12 @@ function Avatar3D({ mouseStateRef }) {
         model.scale.setScalar(zoomScale);
 
         // 360-degree rotation + drag rotation offset
-        model.rotation.y = smooth.x * Math.PI + smooth.dragRotation;
+        const rotMult = isMobileScreen ? Math.PI * 0.8 : Math.PI;
+        model.rotation.y = smooth.x * rotMult + smooth.dragRotation;
         
         // Subtle vertical tilt (looking up/down)
-        model.rotation.x = -smooth.y * 0.15;
+        const tiltMult = isMobileScreen ? 0.10 : 0.15;
+        model.rotation.x = -smooth.y * tiltMult;
 
         // Very gentle torso sway (always active)
         model.rotation.z = Math.sin(elapsed * 0.75) * 0.007;
@@ -263,11 +273,13 @@ function Avatar3D({ mouseStateRef }) {
       applyLayout();
     };
     window.addEventListener("resize", onResize);
+    window.addEventListener("orientationchange", onResize);
 
     /* ── cleanup ─────────────────────────────────────────────────────── */
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("orientationchange", onResize);
       canvas.removeEventListener("webglcontextlost", handleContextLost);
       if (renderer) {
         try {

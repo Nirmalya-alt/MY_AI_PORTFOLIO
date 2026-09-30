@@ -108,6 +108,7 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--accent-violet) transparent;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar { width: 5px; }
@@ -501,9 +502,12 @@ body::before {
 }
 .hero-avatar-side {
   width: 100%;
+  max-width: 100%;
   height: 600px;
   position: relative;
   z-index: 3;
+  overflow: hidden;
+  touch-action: pan-y;
   animation: fadeIn 1.2s var(--transition-slow) both;
 }
 .hero-avatar-side.grabbing {
@@ -513,8 +517,10 @@ body::before {
 /* Avatar Canvas container */
 .avatar-3d-container {
   width: 100%;
+  max-width: 100%;
   height: 100%;
   position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1247,7 +1253,7 @@ body::before {
 .back-to-top {
   position: fixed;
   right: 24px;
-  bottom: 100px;
+  bottom: calc(96px + env(safe-area-inset-bottom, 0px));
   width: 44px; height: 44px;
   display: flex; align-items: center; justify-content: center;
   background: var(--bg-glass-strong);
@@ -1256,18 +1262,21 @@ body::before {
   color: var(--text-primary);
   font-size: 18px;
   cursor: pointer;
-  z-index: 998;
+  z-index: 1199;
   transition: all var(--transition-base);
   box-shadow: var(--shadow-md);
   opacity: 0;
   pointer-events: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 .back-to-top.visible {
   opacity: 1;
   pointer-events: all;
 }
 .back-to-top:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px) translateZ(0);
   box-shadow: var(--shadow-glow);
   border-color: var(--accent-violet-light);
 }
@@ -1278,7 +1287,7 @@ body::before {
 .chatbot-trigger {
   position: fixed;
   right: 24px;
-  bottom: 30px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
   width: 54px; height: 54px;
   border: none;
   border-radius: var(--radius-full);
@@ -1287,18 +1296,22 @@ body::before {
   font-size: 22px;
   cursor: pointer;
   box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
-  z-index: 1000;
+  z-index: 1200;
   display: flex; align-items: center; justify-content: center;
-  transition: all var(--transition-spring);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   animation: pulse-glow 3s ease-in-out infinite;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
 }
 .chatbot-trigger:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) translateZ(0);
 }
 .chatbot-window {
   position: fixed;
   right: 24px;
-  bottom: 96px;
+  bottom: calc(90px + env(safe-area-inset-bottom, 0px));
   width: 380px;
   height: 520px;
   background: var(--bg-nav-drawer);
@@ -1308,8 +1321,9 @@ body::before {
   flex-direction: column;
   overflow: hidden;
   box-shadow: var(--shadow-lg), var(--shadow-glow);
-  z-index: 999;
+  z-index: 1250;
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   animation: fadeInUp 0.3s ease both;
 }
 .chatbot-header {
@@ -1656,25 +1670,211 @@ body::before {
   }
 }
 @media (max-width: 768px) {
-  .navbar { padding: 14px 5%; }
+  html, body, #root, main {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .navbar { padding: 14px 20px; }
+  .navbar.scrolled { padding: 12px 20px; }
   .nav-links { display: none; }
-  .hero-avatar-side { height: 380px; }
   .mobile-menu-btn { display: flex; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .about-stats { grid-template-columns: repeat(2, 1fr); }
-  .cert-grid { grid-template-columns: repeat(2, 1fr); }
-  .resume-modal-box { border-radius: var(--radius-lg); }
-  .chatbot-window { width: calc(100vw - 32px); right: 16px; }
-  .modal-header { padding: 24px; }
-  .modal-body { padding: 20px 24px 28px; }
-  .resume-body { padding: 20px 24px 28px; }
-  .resume-header { padding: 20px 24px; flex-direction: column; gap: 14px; }
+  .hero { padding: 100px 20px 50px; }
+  .hero-container {
+    width: 100%;
+    max-width: 100%;
+    padding-top: 10px;
+    gap: 24px;
+  }
+  .hero-avatar-side {
+    height: 380px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .section { padding: 70px 20px; }
+  .footer { padding: 40px 20px 30px; }
+  .projects-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .project-card {
+    padding: 24px 20px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .experience-timeline {
+    padding-left: 22px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .experience-timeline::before {
+    left: 6px;
+  }
+  .exp-dot {
+    left: -19px;
+    top: 20px;
+  }
+  .exp-card {
+    padding: 20px 18px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .exp-card:hover {
+    transform: none;
+  }
+  .about-stats { grid-template-columns: repeat(2, 1fr); width: 100%; }
+  .cert-grid { grid-template-columns: repeat(2, 1fr); width: 100%; }
+  .resume-modal-box { border-radius: var(--radius-lg); width: 95vw; }
+  .chatbot-window {
+    width: calc(100vw - 32px);
+    right: 16px;
+    bottom: calc(78px + env(safe-area-inset-bottom, 0px));
+    max-height: 80vh;
+    z-index: 1250;
+  }
+  .chatbot-trigger {
+    right: 18px;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    z-index: 1200;
+  }
+  .back-to-top {
+    left: 18px;
+    right: auto;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    width: 44px;
+    height: 44px;
+    z-index: 1199;
+  }
+  .modal-header { padding: 20px 24px; }
+  .modal-body { padding: 18px 24px 28px; }
+  .resume-body { padding: 18px 24px 28px; }
+  .resume-header { padding: 18px 24px; flex-direction: column; gap: 14px; }
 }
 @media (max-width: 480px) {
-  .hero h1 { font-size: 2.5rem; }
-  .about-stats { grid-template-columns: 1fr 1fr; }
-  .section { padding: 80px 5%; }
-  .footer-links { gap: 4px; }
+  .navbar { padding: 14px 16px; }
+  .navbar.scrolled { padding: 12px 16px; }
+  .hero {
+    padding: 96px 16px 45px;
+  }
+  .hero-container {
+    gap: 20px;
+    padding-top: 10px;
+  }
+  .hero h1 {
+    font-size: 2.1rem;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+  .hero-role-wrapper {
+    min-width: 150px;
+    font-size: 1.1rem;
+  }
+  .hero-avatar-side {
+    height: 320px;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-tech-tags {
+    gap: 6px;
+    justify-content: center;
+  }
+  .hero-tech-tag {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+  .about-stats { grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
+  .stat-card { padding: 16px 10px; width: 100%; }
+  .stat-card h3 { font-size: 1.6rem; }
+  .section { padding: 60px 16px; }
+  .section-title { font-size: 1.85rem; }
+  .experience-timeline {
+    padding-left: 18px;
+    width: 100%;
+  }
+  .experience-timeline::before {
+    left: 5px;
+  }
+  .exp-dot {
+    left: -16px;
+    top: 18px;
+    width: 10px;
+    height: 10px;
+  }
+  .exp-card {
+    padding: 16px 14px;
+    width: 100%;
+  }
+  .project-card {
+    padding: 20px 16px;
+    width: 100%;
+  }
+  .contact-detail-item {
+    width: 100%;
+    padding: 12px 14px;
+    box-sizing: border-box;
+    word-break: break-all;
+  }
+  .contact-detail-value {
+    word-break: break-all;
+  }
+  .footer { padding: 36px 16px 28px; }
+  .footer-links { gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .chatbot-window {
+    width: calc(100vw - 24px);
+    right: 12px;
+    bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+    max-height: 82vh;
+    z-index: 1250;
+  }
+  .chatbot-trigger {
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    right: 14px;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    z-index: 1200;
+  }
+  .back-to-top {
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    left: 14px;
+    right: auto;
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+    z-index: 1199;
+  }
+  .projects-github-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .projects-github-banner a.btn-outline {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
 }
 
 /* =============================================
@@ -1779,7 +1979,7 @@ body, .navbar, .glass-card, .footer, .chatbot-window, .modal-box, .resume-modal-
 
 /* Water drop particle */
 .water-drop {
-  position: fixed;
+  position: absolute;
   pointer-events: none;
   z-index: 9999;
   border-radius: 50%;
