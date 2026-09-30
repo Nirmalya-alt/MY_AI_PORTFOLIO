@@ -1,11 +1,11 @@
-<div align="center">
+# Portfolio AI
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+React/Vite portfolio with a FastAPI backend for the portfolio chat assistant. Contact is handled by a `mailto:` link in the visitor's email client.
 
-  <h1>Built with AI Studio</h2>
+## Run locally
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+1. Copy `backend/.env.example` to `backend/.env` and fill in `GEMINI_API_KEY`.
+2. Start the app with `start-portfolio.bat`, or run the backend (`npm run server`) and frontend (`npm run dev`) in separate terminals.
+3. Open the Vite URL printed in the terminal. The Vite development proxy forwards `/api/chat` to the local FastAPI server.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+The Contact Me section opens a draft addressed to `nirmalyachatterjee617@gmail.com` in the visitor's default email application. It does not submit visitor data to a backend.

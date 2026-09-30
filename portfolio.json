@@ -1,0 +1,160 @@
+{
+  "personal": {
+    "name": "Nirmalya Chatterjee",
+    "title": "AI & Creative Developer",
+    "location": "Kolkata",
+    "email": "nirmalyachatterjee@gmail.com",
+    "phone": "+91-9635316064",
+    "linkedin": "LinkedIn"
+  },
+
+  "summary": "Creative and tech-driven BCA student with hands-on experience in AI prompt engineering, image annotation, and UI-focused web development. Passionate about combining artificial intelligence with design, storytelling, and digital content creation. Skilled at translating ideas into engaging visual and interactive experiences.",
+
+  "skills": {
+    "creative_and_professional": [
+      "Visual Thinking & Design Sense",
+      "Creative Problem Solving",
+      "Communication & Storytelling",
+      "Team Collaboration"
+    ],
+
+    "technical": [
+      "Gen AI",
+      "Prompt Engineering",
+      "Java",
+      "Python",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "UI/UX Basics",
+      "GitHub",
+      "CI/CD",
+      "Azure"
+    ]
+  },
+
+  "projects": [
+    {
+      "name": "TripBuddy App",
+      "year": "2026-Present",
+      "description": "Developed a smart travel booking application offering both traditional and AI-powered trip planning experiences.",
+      "features": [
+        "Ready-made trip booking",
+        "Personalized AI trip recommendations based on user data",
+        "Transport-only booking options",
+        "24/7 chat support",
+        "Comprehensive admin dashboard",
+        "Full data management",
+        "Trip management",
+        "Coupon creation functionalities"
+      ]
+    },
+
+    {
+      "name": "Portfolio Website",
+      "year": "2025",
+      "description": "Designed and developed a responsive personal portfolio with modern UI principles.",
+      "features": [
+        "Responsive design",
+        "Modern UI principles",
+        "Project showcase",
+        "Clean layout",
+        "Usability",
+        "Visual appeal"
+      ]
+    },
+
+    {
+      "name": "Creative UI Projects (Fruit App)",
+      "year": "2025",
+      "description": "Built an interactive UI-based application with engaging visuals and structured content presentation.",
+      "focus": [
+        "Design consistency",
+        "User interaction",
+        "Engaging visuals",
+        "Structured content presentation"
+      ]
+    }
+  ],
+
+  "experience": [
+    {
+      "role": "AI Image Annotation & Prompt Engineering Intern",
+      "company": "RT Network Pvt Ltd",
+      "duration": "2026-Present",
+      "responsibilities": [
+        "Worked on AI-driven image analysis and prompt refinement for computer vision models",
+        "Improved output quality by aligning prompts with visual accuracy and creative intent",
+        "Performed dataset annotation",
+        "Performed quality validation for AI-generated content"
+      ]
+    },
+
+    {
+      "role": "DevOps Intern",
+      "company": "Employability.life",
+      "duration": "2024",
+      "responsibilities": [
+        "Worked on CI/CD pipelines",
+        "Worked on automation workflows using GitHub Actions",
+        "Gained exposure to deployment processes",
+        "Gained exposure to cloud-based tools"
+      ]
+    },
+
+    {
+      "role": "Frontend Developer Intern",
+      "company": "Chipherbytechnology Pvt Ltd",
+      "duration": "2024",
+      "responsibilities": [
+        "Developed a responsive event management website using HTML, CSS, and JavaScript",
+        "Focused on UI design",
+        "Worked on layout structuring",
+        "Implemented basic interactivity"
+      ]
+    }
+  ],
+
+  "education": [
+    {
+      "degree": "Bachelor of Computer Applications (BCA)",
+      "university": "Sister Nivedita University, Kolkata",
+      "duration": "2023-2026",
+      "coursework": [
+        "Programming",
+        "Web Development",
+        "Applied AI Concepts"
+      ]
+    }
+  ],
+
+  "certifications": {
+    "programs": [
+      "Deloitte",
+      "AWS",
+      "TCS",
+      "Tata",
+      "EA",
+      "Walmart"
+    ],
+    "platform": "Forage",
+    "description": "Completed virtual experience programs with Deloitte, AWS, TCS, Tata, EA, and Walmart.",
+    "focus_areas": [
+      "Software Development",
+      "Data Analytics",
+      "Cloud",
+      "Cybersecurity"
+    ]
+  },
+
+  "career_interests": [
+    "Software Development",
+    "Data Analytics",
+    "Cloud",
+    "Cybersecurity",
+    "Artificial Intelligence",
+    "Prompt Engineering",
+    "UI/UX",
+    "Web Development"
+  ]
+}
