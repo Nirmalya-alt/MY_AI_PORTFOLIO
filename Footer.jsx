@@ -57,7 +57,7 @@ function Footer() {
         <div className="footer-bottom">
           <span>
             <LiquidText intensity="subtle">
-              © 2025 Nirmalya Chatterjee · Crafted with ☕ + AI
+              © 2026 Nirmalya Chatterjee · Crafted with ☕ + AI
             </LiquidText>
           </span>
         </div>

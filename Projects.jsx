@@ -16,7 +16,7 @@ const PROJECTS = [
       "Interactive crop yield prediction dashboard",
       "Visualization of climate-crop correlation insights",
     ],
-    github: "https://github.com/nirmalya-chatterjee",
+    github: "https://github.com/Nirmalya-alt",
     demo: "#",
   },
   {
@@ -33,7 +33,7 @@ const PROJECTS = [
       "Personalized care tips and diet recommendations",
       "Vet locator with nearby clinic listings",
     ],
-    github: "https://github.com/nirmalya-chatterjee",
+    github: "https://github.com/Nirmalya-alt",
     demo: "#",
   },
   {
@@ -50,7 +50,7 @@ const PROJECTS = [
       "Smart packing list suggestions by destination",
       "Weather-aware activity recommendations",
     ],
-    github: "https://github.com/nirmalya-chatterjee",
+    github: "https://github.com/Nirmalya-alt",
     demo: "#",
   },
   {
@@ -67,7 +67,7 @@ const PROJECTS = [
       "Eco-packaging incentive gamification system",
       "Environmental impact dashboard for users",
     ],
-    github: "https://github.com/nirmalya-chatterjee",
+    github: "https://github.com/Nirmalya-alt",
     demo: "#",
   },
   {
@@ -84,7 +84,7 @@ const PROJECTS = [
       "Mobile-first responsive layout",
       "Animated cart and checkout flow",
     ],
-    github: "https://github.com/nirmalya-chatterjee",
+    github: "https://github.com/Nirmalya-alt",
     demo: "#",
   },
 ];
@@ -166,6 +166,53 @@ function Projects() {
         ))}
       </div>
 
+      {/* GitHub Repository Link & Fallback Note */}
+      <div
+        className="projects-github-banner"
+        style={{
+          marginTop: "40px",
+          padding: "20px 24px",
+          borderRadius: "var(--radius-lg, 16px)",
+          background: "var(--bg-glass, rgba(255, 255, 255, 0.04))",
+          border: "1px solid var(--border-normal, rgba(255, 255, 255, 0.1))",
+          backdropFilter: "blur(12px)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "18px",
+          flexWrap: "wrap",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "14px", maxWidth: "700px" }}>
+          <span style={{ fontSize: "2rem" }}>🐙</span>
+          <div>
+            <p style={{ fontWeight: "700", fontSize: "15px", color: "var(--text-primary)" }}>
+              <LiquidText intensity="small">Looking for the latest code or project repositories?</LiquidText>
+            </p>
+            <p style={{ fontSize: "13px", color: "var(--text-secondary)", marginTop: "3px", lineHeight: "1.5" }}>
+              If any direct project link is undergoing updates, you can explore all active source code and upcoming releases on GitHub at{" "}
+              <a
+                href="https://github.com/Nirmalya-alt"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "var(--accent-cyan-light, #67e8f9)", textDecoration: "underline", fontWeight: "600" }}
+              >
+                github.com/Nirmalya-alt
+              </a>
+            </p>
+          </div>
+        </div>
+        <a
+          href="https://github.com/Nirmalya-alt"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-outline"
+          style={{ padding: "10px 22px", fontSize: "13px", whiteSpace: "nowrap" }}
+        >
+          <LiquidText intensity="subtle">Visit GitHub Profile ↗</LiquidText>
+        </a>
+      </div>
+
       {/* Project Detail Modal */}
       {selectedProject && (
         <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
@@ -212,6 +259,17 @@ function Projects() {
                   </a>
                 )}
               </div>
+              <p style={{ fontSize: "12px", color: "var(--text-muted)", marginTop: "14px", textAlign: "center" }}>
+                💡 Note: If any direct repository is updating or private, explore this project and all active codebases on{" "}
+                <a
+                  href="https://github.com/Nirmalya-alt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "var(--accent-cyan-light, #67e8f9)", textDecoration: "underline", fontWeight: "600" }}
+                >
+                  github.com/Nirmalya-alt
+                </a>
+              </p>
             </div>
           </div>
         </div>
