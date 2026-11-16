@@ -32,28 +32,63 @@ const PORTFOLIO_KNOWLEDGE = {
       title: "Climate Impact on Crop Production",
       category: "AI/ML",
       tags: ["crop", "climate", "ml", "machine learning", "agriculture", "scikit", "yield", "prediction", "xgboost", "random forest"],
-      desc: "An end-to-end Machine Learning project that predicts crop yields using historical climate data (temperature, rainfall, humidity). Built with Python, scikit-learn, Pandas, and an interactive React dashboard comparing models like Random Forest and XGBoost with high accuracy.",
+      desc: "An end-to-end Machine Learning project that predicts crop yields using historical climate data (temperature, rainfall, humidity). Built with Python, scikit-learn, Pandas, and an interactive React dashboard comparing models like Random Forest and XGBoost with high accuracy. GitHub: https://github.com/Nirmalya-alt/farmer-assistent-AI-best-version",
+    },
+    {
+      id: "bookleaf",
+      title: "BookLeaf Publishing — Author Support & Communication Portal",
+      category: "AI & Enterprise Full-Stack",
+      tags: ["bookleaf", "publishing", "author", "ticket", "support", "gemini", "portal", "catalog"],
+      desc: "An integrated, enterprise-grade full-stack web application designed for BookLeaf Publishing to solve author communication at scale across 22,000+ catalog titles. Features role-based portals for Authors and Operations Admins, real-time ticket synchronization, and server-side Google Gemini 3.8 Flash integration for automated ticket classification, urgency priority scoring, and policy-grounded draft response generation. GitHub: https://github.com/Nirmalya-alt/Bookleaf",
+    },
+    {
+      id: "editorial",
+      title: "Editorial — Full-Stack Blog Publishing Platform",
+      category: "Web & Full-Stack",
+      tags: ["editorial", "blog", "blogging", "writing", "articles", "stories", "typography", "reading"],
+      desc: "A production-quality, responsive editorial blogging platform designed for clarity, balanced mathematical typography, and distraction-free reading and authoring. Features an Editorial Homepage, full-text search with category filters (Tech, Programming, AI, Design, Business, Lifestyle, Career), a centered 740px reading container with live read counts & reading time estimates, real-time database persistence, and email/password + 1-click Google Sign-in. GitHub: https://github.com/Nirmalya-alt/Bolg-Writing",
     },
     {
       id: "petguard",
       title: "PetGuard",
       category: "AI Health",
       tags: ["petguard", "pet", "dog", "cat", "animal", "health", "symptom", "vet"],
-      desc: "PetGuard is an AI-powered web app for pet health tracking, symptom checking, personalized diet care recommendations, and connecting owners with nearby veterinary clinics. Built using React, JavaScript, AI integration, and Node.js.",
+      desc: "PetGuard is an AI-powered web app for pet health tracking, symptom checking, personalized diet care recommendations, and connecting owners with nearby veterinary clinics. Built using React, JavaScript, AI integration, and Node.js. GitHub: https://github.com/Nirmalya-alt/mynimal",
     },
     {
-      id: "greengo",
-      title: "GreenGo",
-      category: "Sustainability & Web",
-      tags: ["greengo", "green", "delivery", "carbon", "eco", "sustainability", "eco-friendly"],
-      desc: "GreenGo is an eco-friendly delivery service concept with real-time carbon footprint tracking per delivery, green route optimization, eco-packaging incentives, and a gamified sustainability dashboard. Built with React, CSS3, and UI/UX best practices.",
+      id: "swiftpay",
+      title: "SwiftPay — Offline UPI Mesh Payments",
+      category: "FinTech & Mesh Networking",
+      tags: ["swiftpay", "upi", "offline", "mesh", "bluetooth", "payment", "crypto", "vercel", "express"],
+      desc: "An end-to-end demonstration of offline UPI payments routed through a Bluetooth gossip mesh network and settled asynchronously upon internet reconnection. Built with Node.js & Express (MIT License, deployed on Vercel), devices sign and hybrid-encrypt transactions and hop peer-to-peer until an online device forwards them for cryptographic verification, deduplication, and atomic settlement. GitHub: https://github.com/Nirmalya-alt/UPI_NET_OFLINE",
+    },
+    {
+      id: "devportfolio",
+      title: "DEV's Portfolio",
+      category: "Client Portfolio & UI/UX",
+      tags: ["dev", "dev's portfolio", "client", "portfolio"],
+      desc: "A custom-built client portfolio website crafted with modern responsive UI, interactive project showcases, and smooth animations for personal branding. GitHub: https://github.com/Nirmalya-alt/DEV_PORTFOLIO",
+    },
+    {
+      id: "ems",
+      title: "EMS — Employment Management System",
+      category: "Enterprise Web App",
+      tags: ["ems", "employment", "employee", "management", "hr", "attendance"],
+      desc: "An Employment Management System (EMS) designed to streamline employee records, role management, task oversight, and HR workflows with a clean administrative dashboard. GitHub: https://github.com/Nirmalya-alt/EMS",
+    },
+    {
+      id: "bill",
+      title: "Bill Application",
+      category: "Utility & Web App",
+      tags: ["bill", "billing", "invoice", "receipt", "tax"],
+      desc: "A smart billing and invoice management application for itemized bill creation, automated subtotal & tax calculation, and customer receipt management. GitHub: https://github.com/Nirmalya-alt/bill",
     },
     {
       id: "fruit",
       title: "Creative UI — Fruit App",
       category: "UI/UX Design",
       tags: ["fruit", "ui", "glassmorphism", "design", "creative ui", "mobile ui"],
-      desc: "A mobile-first UI concept for a healthy food and fruit ordering app. Demonstrates advanced CSS animations, glassmorphism aesthetics, smooth micro-interactions, and responsive design built with HTML5, CSS3, and JavaScript.",
+      desc: "A mobile-first UI concept for a healthy food and fruit ordering app. Demonstrates advanced CSS animations, glassmorphism aesthetics, smooth micro-interactions, and responsive design built with HTML5, CSS3, and JavaScript. GitHub: https://github.com/Nirmalya-alt/fruit",
     },
     {
       id: "portfolio",
@@ -120,7 +155,7 @@ function answerQuestion(query) {
     }
 
     if (/who (are|r) you|what are you|what is your name|your purpose/i.test(q)) {
-      return "I'm Nirmalya's AI Portfolio Assistant! 🤖 I'm trained with full details about his background as an AI & Creative Developer, his 5+ projects, 3 internships, 6 certifications, and technical skills.";
+      return "I'm Nirmalya's AI Portfolio Assistant! 🤖 I'm trained with full details about his background as an AI & Creative Developer, his 10+ projects, 3 internships, 6 certifications, and technical skills.";
     }
 
     if (/thank|thanks|awesome|great|cool|nice|good job/i.test(q)) {
@@ -153,19 +188,44 @@ He is always happy to connect!`;
       return `🚀 ${p.title} (${p.category}):\n${p.desc}\n\nKey highlights: AI trip suggestions, budget & travel planning, admin panel, and 24/7 support features.`;
     }
 
-    if (/crop|climate|agriculture|yield|scikit|xgboost|random forest/i.test(q)) {
+    if (/bookleaf|book leaf|author support|publishing portal|ticket/i.test(q)) {
+      const p = PORTFOLIO_KNOWLEDGE.projects.find((x) => x.id === "bookleaf");
+      return `📚 ${p.title} (${p.category}):\n${p.desc}`;
+    }
+
+    if (/editorial|blog|blogging|writing platform|bolg/i.test(q)) {
+      const p = PORTFOLIO_KNOWLEDGE.projects.find((x) => x.id === "editorial");
+      return `✍️ ${p.title} (${p.category}):\n${p.desc}`;
+    }
+
+    if (/crop|climate|agriculture|yield|scikit|xgboost|random forest|farmer/i.test(q)) {
       const p = PORTFOLIO_KNOWLEDGE.projects.find((x) => x.id === "crop");
       return `🌍 ${p.title} (${p.category}):\n${p.desc}\n\nIt analyzes temperature, humidity, and rainfall to provide accurate agricultural yield forecasts using Python ML models!`;
     }
 
-    if (/petguard|pet guard|pet|veterinary|vet\b|animal/i.test(q)) {
-      const p = PORTFOLIO_KNOWLEDGE.projects.find((x) => x.id === "petguard");
-      return `🐾 ${p.title} (${p.category}):\n${p.desc}\n\nFeatures an AI symptom analyzer, care tips, and nearby vet clinic directory.`;
+    if (/swiftpay|upi|offline payment|bluetooth mesh|gossip mesh|upi_net/i.test(q)) {
+      const p = PORTFOLIO_KNOWLEDGE.projects.find((x) => x.id === "swiftpay");
+      return `💸 ${p.title} (${p.category}):\n${p.desc}`;
     }
 
-    if (/greengo|green go|eco|delivery|carbon footprint/i.test(q)) {
-      const p = PORTFOLIO_KNOWLEDGE.projects.find((x) => x.id === "greengo");
-      return `🟢 ${p.title} (${p.category}):\n${p.desc}\n\nPromotes sustainability through route optimization and reward gamification for green deliveries.`;
+    if (/dev'?s portfolio|dev portfolio|client portfolio/i.test(q)) {
+      const p = PORTFOLIO_KNOWLEDGE.projects.find((x) => x.id === "devportfolio");
+      return `💼 ${p.title} (${p.category}):\n${p.desc}`;
+    }
+
+    if (/\bems\b|employment management|employee management/i.test(q)) {
+      const p = PORTFOLIO_KNOWLEDGE.projects.find((x) => x.id === "ems");
+      return `👥 ${p.title} (${p.category}):\n${p.desc}`;
+    }
+
+    if (/\bbill\b|billing|invoice/i.test(q)) {
+      const p = PORTFOLIO_KNOWLEDGE.projects.find((x) => x.id === "bill");
+      return `🧾 ${p.title} (${p.category}):\n${p.desc}`;
+    }
+
+    if (/petguard|pet guard|pet|veterinary|vet\b|animal|mynimal/i.test(q)) {
+      const p = PORTFOLIO_KNOWLEDGE.projects.find((x) => x.id === "petguard");
+      return `🐾 ${p.title} (${p.category}):\n${p.desc}\n\nFeatures an AI symptom analyzer, care tips, and nearby vet clinic directory.`;
     }
 
     if (/fruit|fruit app|creative ui/i.test(q)) {
@@ -179,13 +239,17 @@ He is always happy to connect!`;
 
     // General projects query
     if (/project|projects|built|portfolio work|apps|creations/i.test(q)) {
-      return `🚀 Nirmalya has built several standout projects:
-1. 🌍 Climate Impact on Crop Production — ML agricultural yield predictor (Python, scikit-learn, React)
-2. 🐾 PetGuard — AI-driven pet symptom checker & health companion
-3. 🚀 TripBuddy App — Smart AI travel planner with itinerary generator
-4. 🟢 GreenGo — Eco delivery app with real-time carbon footprint tracking
-5. 🍎 Creative Fruit UI — Mobile glassmorphism UI concept
-6. 🎭 3D Avatar Portfolio — Built with Three.js, React, and physics-based liquid text!`;
+      return `🚀 Nirmalya has built 10+ standout projects:
+1. 🌍 Climate Impact on Crop Production — ML yield predictor (github.com/Nirmalya-alt/farmer-assistent-AI-best-version)
+2. 📚 BookLeaf Publishing — Enterprise Author Support Portal with Gemini 3.8 Flash AI (github.com/Nirmalya-alt/Bookleaf)
+3. ✍️ Editorial — Full-Stack Blog Publishing Platform (github.com/Nirmalya-alt/Bolg-Writing)
+4. 💸 SwiftPay — Offline UPI Bluetooth Mesh Payments (github.com/Nirmalya-alt/UPI_NET_OFLINE)
+5. 🐾 PetGuard — AI pet health companion (github.com/Nirmalya-alt/mynimal)
+6. 💼 DEV's Portfolio — Client portfolio project (github.com/Nirmalya-alt/DEV_PORTFOLIO)
+7. 👥 EMS — Employment Management System (github.com/Nirmalya-alt/EMS)
+8. 🧾 Bill Application — Smart billing & invoicing app (github.com/Nirmalya-alt/bill)
+9. 🚀 TripBuddy App — Smart AI travel planner
+10. 🍎 Creative Fruit UI — Mobile glassmorphism UI (github.com/Nirmalya-alt/fruit)`;
     }
 
     // 5. Specific Experience / Companies
@@ -265,7 +329,7 @@ He is always happy to connect!`;
     return `Great question! Nirmalya is an AI & Creative Developer based in Kolkata with experience in React, Python, Three.js, DevOps (Docker, Azure), and AI Prompt Engineering.
 
 You can ask me specifically about:
-• 🚀 His projects: "TripBuddy", "Climate Crop ML", "PetGuard", "GreenGo"
+• 🚀 His projects: "SwiftPay", "BookLeaf Publishing", "Editorial", "Climate Crop ML", "DEV's Portfolio", "EMS", "Bill App", "PetGuard", "Fruit App"
 • 💼 His internships: "RT Network", "Employability.life", "Chipherbytechnology"
 • 🎓 His education: "Where does he study?" or "Certifications"
 • 📬 How to contact him or view his resume!`;

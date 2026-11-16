@@ -8,7 +8,7 @@ function About({ onOpenResume }) {
 
   const stats = [
     { number: "3+", label: "Internships" },
-    { number: "5+", label: "Projects Built" },
+    { number: "10+", label: "Projects Built" },
     { number: "6+", label: "Certifications" },
     { number: "2026", label: "BCA Graduate" },
   ];

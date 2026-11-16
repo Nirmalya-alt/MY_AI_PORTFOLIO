@@ -30,6 +30,21 @@ export default defineConfig({
       }
     }
   ],
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/three')) {
+            return 'three';
+          }
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'react';
+          }
+        },
+      },
+    },
+  },
   server: {
     host: '0.0.0.0',
     port: 3000,

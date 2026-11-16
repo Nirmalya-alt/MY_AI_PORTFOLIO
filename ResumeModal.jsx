@@ -99,10 +99,15 @@ function ResumeModal({ onClose }) {
           <div className="resume-section">
             <p className="resume-section-title">Key Projects</p>
             <ul className="resume-exp-bullets">
+              <li><strong style={{ color: "var(--text-primary)" }}>SwiftPay — Offline UPI Mesh Payments</strong> — Offline UPI transactions routed via Bluetooth gossip mesh &amp; settled asynchronously with hybrid cryptography (Node.js, Express, Vercel)</li>
+              <li><strong style={{ color: "var(--text-primary)" }}>BookLeaf Publishing — Author Support &amp; Communication Portal</strong> — Enterprise full-stack support portal across 22,000+ catalog titles with role-based portals, real-time ticket sync, and Google Gemini 3.8 Flash integration</li>
+              <li><strong style={{ color: "var(--text-primary)" }}>Editorial — Full-Stack Blog Publishing Platform</strong> — Production editorial blogging platform with mathematical typography, full-text search, distraction-free reading, real-time DB, and Google Sign-in</li>
               <li><strong style={{ color: "var(--text-primary)" }}>Climate Impact on Crop Production</strong> — ML model predicting crop yields using climate data (Python, scikit-learn, React)</li>
               <li><strong style={{ color: "var(--text-primary)" }}>PetGuard</strong> — AI-powered pet health tracking and care recommendation app (React, JavaScript)</li>
+              <li><strong style={{ color: "var(--text-primary)" }}>DEV&apos;s Portfolio</strong> — Custom client portfolio website with modern responsive UI and interactive project showcases</li>
+              <li><strong style={{ color: "var(--text-primary)" }}>EMS — Employment Management System</strong> — Employee records, role administration, and HR workflow dashboard</li>
+              <li><strong style={{ color: "var(--text-primary)" }}>Bill Application</strong> — Smart billing and invoicing app with automated tax calculations and receipt generation</li>
               <li><strong style={{ color: "var(--text-primary)" }}>TripBuddy App</strong> — Smart AI travel planner with itinerary generation and budget tracking (React)</li>
-              <li><strong style={{ color: "var(--text-primary)" }}>GreenGo</strong> — Eco-friendly delivery service concept with carbon footprint tracking (React, UI/UX)</li>
               <li><strong style={{ color: "var(--text-primary)" }}>Creative UI — Fruit App</strong> — Premium mobile-first glassmorphic UI design (HTML, CSS, JavaScript)</li>
             </ul>
           </div>
