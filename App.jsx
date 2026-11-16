@@ -19,12 +19,20 @@ function App() {
 
   // ── Dark/Light theme ──────────────────────────────
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("portfolio-theme") || "dark";
+    try {
+      return localStorage.getItem("portfolio-theme") || "dark";
+    } catch {
+      return "dark";
+    }
   });
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("portfolio-theme", theme);
+    try {
+      localStorage.setItem("portfolio-theme", theme);
+    } catch {
+      /* ignore storage errors in restricted contexts */
+    }
   }, [theme]);
 
   const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));

@@ -1,11 +1,24 @@
-# Portfolio AI
+# Nirmalya Chatterjee — Creative & AI Developer Portfolio
 
-React/Vite portfolio with a FastAPI backend for the portfolio chat assistant. Contact is handled by a `mailto:` link in the visitor's email client.
+A modern, responsive React + Vite portfolio featuring an interactive 3D Avatar (Three.js), fluid Liquid Text physics, Dark/Light mode toggle, interactive Resume viewer, Mail compose modal, and a built-in Portfolio AI Assistant (zero API keys required).
 
-## Run locally
+## Local Development
 
-1. Copy `backend/.env.example` to `backend/.env` and fill in `GEMINI_API_KEY`.
-2. Start the app with `start-portfolio.bat`, or run the backend (`npm run server`) and frontend (`npm run dev`) in separate terminals.
-3. Open the Vite URL printed in the terminal. The Vite development proxy forwards `/api/chat` to the local FastAPI server.
+```bash
+npm install
+npm run dev
+```
 
-The Contact Me section opens a draft addressed to `nirmalyachatterjee617@gmail.com` in the visitor's default email application. It does not submit visitor data to a backend.
+## Production Build & Lint
+
+```bash
+npm run lint
+npm run build
+```
+
+## Deploy on Vercel
+
+1. Push this repository to GitHub.
+2. Import the repository in [Vercel](https://vercel.com).
+3. Vercel automatically uses the included `vercel.json` (`framework: "vite"`, `buildCommand: "npm run build"`, `outputDirectory: "dist"`).
+4. No environment variables or API keys are required.
